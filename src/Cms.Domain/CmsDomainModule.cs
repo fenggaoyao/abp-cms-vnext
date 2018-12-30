@@ -10,10 +10,14 @@ using Volo.Abp.Localization.Resources.AbpValidation;
 using Volo.Abp.Modularity;
 using Volo.Abp.Settings;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Docs;
+using Volo.Blogging;
 
 namespace Cms
 {
     [DependsOn(
+        typeof(DocsDomainModule),
+        typeof(BloggingDomainModule),
         typeof(AbpIdentityDomainModule),
         typeof(AbpAuditingModule),
         typeof(BackgroundJobsDomainModule),

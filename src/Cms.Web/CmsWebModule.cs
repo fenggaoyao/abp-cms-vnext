@@ -15,8 +15,6 @@ using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Modularity;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
-using Volo.Abp.AspNetCore.Mvc.UI;
-using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.Autofac;
@@ -27,17 +25,20 @@ using Volo.Abp.Identity.Web;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.Resources.AbpValidation;
 using Volo.Abp.Modularity;
-using Volo.Abp.PermissionManagement.Web;
 using Volo.Abp.Threading;
-using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using Volo.Abp.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Volo.Blogging;
+using Volo.Docs;
+
 
 namespace Cms
 {
     [DependsOn(
+        typeof(DocsWebModule),
+        typeof(BloggingWebModule),
         typeof(CmsApplicationModule),
         typeof(CmsEntityFrameworkCoreModule),
         typeof(AbpAutofacModule),
@@ -49,14 +50,18 @@ namespace Cms
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
+            // context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
+            // {
+            //     options.AddAssemblyResource(
+            //         typeof(CmsResource),
+            //         typeof(CmsDomainModule).Assembly,
+            //         typeof(CmsApplicationModule).Assembly,
+            //         typeof(CmsWebModule).Assembly
+            //     );
+            // });
+            context.Services.PreConfigure<AbpAspNetCoreConfigurationOptions>(options =>
             {
-                options.AddAssemblyResource(
-                    typeof(CmsResource),
-                    typeof(CmsDomainModule).Assembly,
-                    typeof(CmsApplicationModule).Assembly,
-                    typeof(CmsWebModule).Assembly
-                );
+                options.UserSecretsAssembly = typeof(CmsWebModule).Assembly;
             });
         }
 
@@ -108,6 +113,7 @@ namespace Cms
                 services.Configure<VirtualFileSystemOptions>(options =>
                 {
                     options.FileSets.ReplaceEmbeddedByPyhsical<CmsDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}Cms.Domain", Path.DirectorySeparatorChar)));
+
                 });
             }
         }
@@ -143,6 +149,7 @@ namespace Cms
             services.Configure<AbpAspNetCoreMvcOptions>(options =>
             {
                 options.ConventionalControllers.Create(typeof(CmsApplicationModule).Assembly);
+
             });
         }
 

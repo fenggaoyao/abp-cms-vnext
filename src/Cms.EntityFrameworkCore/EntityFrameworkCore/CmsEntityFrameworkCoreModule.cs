@@ -6,11 +6,15 @@ using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
+using Volo.Docs.EntityFrameworkCore;
+using Volo.Blogging.EntityFrameworkCore;
 
 namespace Cms.EntityFrameworkCore
 {
     [DependsOn(
         typeof(CmsDomainModule),
+        typeof(DocsEntityFrameworkCoreModule),
+        typeof(BloggingEntityFrameworkCoreModule),
         typeof(AbpIdentityEntityFrameworkCoreModule),
         typeof(AbpPermissionManagementEntityFrameworkCoreModule),
         typeof(AbpSettingManagementEntityFrameworkCoreModule),

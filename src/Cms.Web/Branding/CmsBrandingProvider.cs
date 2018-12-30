@@ -6,6 +6,6 @@ namespace Cms.Branding
     [Dependency(ReplaceServices = true)]
     public class CmsBrandingProvider : DefaultBrandingProvider
     {
-        public override string AppName => "Cms";
+        public override string AppName => "云塑科技";
     }
 }

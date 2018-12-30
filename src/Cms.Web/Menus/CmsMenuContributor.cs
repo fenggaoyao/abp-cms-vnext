@@ -21,6 +21,8 @@ namespace Cms.Menus
             var l = context.ServiceProvider.GetRequiredService<IStringLocalizer<CmsResource>>();
 
             context.Menu.Items.Insert(0, new ApplicationMenuItem("Cms.Home", l["Menu:Home"], "/"));
+            context.Menu.Items.Add(new ApplicationMenuItem("MyProject.Docs", l["Menu:Docs"], "/Documents"));
+
         }
     }
 }

@@ -26,6 +26,8 @@
     <PackageReference Include="Volo.Abp.BackgroundJobs.EntityFrameworkCore" Version="0.10.0" />
     <PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="0.10.0" />
     <PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="0.10.0" />
+    <PackageReference Include="Volo.Docs.EntityFrameworkCore" Version="0.10.0" />
+    <PackageReference Include="Volo.Blogging.EntityFrameworkCore" Version="0.10.0" />
   </ItemGroup>
 
 </Project>

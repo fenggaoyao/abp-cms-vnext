@@ -6,6 +6,8 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
+using Volo.Docs.EntityFrameworkCore;
+using Volo.Blogging.EntityFrameworkCore;
 
 namespace Cms.EntityFrameworkCore
 {
@@ -27,6 +29,8 @@ namespace Cms.EntityFrameworkCore
             modelBuilder.ConfigureSettingManagement();
             modelBuilder.ConfigureBackgroundJobs();
             modelBuilder.ConfigureAuditLogging();
+            modelBuilder.ConfigureDocs();
+            modelBuilder.ConfigureBlogging();
         }
     }
 }
